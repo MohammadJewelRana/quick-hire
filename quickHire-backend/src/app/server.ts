@@ -19,3 +19,22 @@ const startServer = async () => {
   }
 };
 startServer();
+
+//for Asynchronous code
+process.on("unhandledRejection", (err) => {
+  console.log("unhandledRejection is detected,shutting down...", err);
+
+  if (server) {
+    server.close(() => {
+      process.exit(1);
+    });
+  }
+
+  process.exit(1);
+});
+
+//for synchronous code
+process.on("uncaughtException", (err) => {
+  console.log("unhandledException is detected,shutting down...", err);
+  process.exit(1);
+});

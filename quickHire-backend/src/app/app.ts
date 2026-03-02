@@ -1,7 +1,8 @@
 import express, { Application, NextFunction, Request, Response } from "express";
 import cors from "cors";
 import notFound from "./middleware/notFound";
- 
+import router from "./routes";
+import globalErrorHandler from "./middleware/globalErrorHandler";
 
 const app: Application = express();
 
@@ -19,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
- 
+app.use("/api", router);
 // base route
 app.get("/api", (_req: Request, res: Response) => {
   res.status(200).json({
@@ -28,6 +29,8 @@ app.get("/api", (_req: Request, res: Response) => {
   });
 });
 
+
+app.use(globalErrorHandler);
 app.use(notFound);
 
 export default app;
