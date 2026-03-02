@@ -14,8 +14,10 @@ const Footer = () => {
   return (
     <footer className="bg-[#0F172A] text-[#94A3B8] pt-20 pb-10">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-4">
-          <div className="lg:col-span-1">
+        {/* 🔥 Main Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-12">
+          {/* 1️⃣ Logo Section */}
+          <div>
             <div className="mb-6">
               <Image
                 src="/images/logos/logo2.png"
@@ -31,7 +33,8 @@ const Footer = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 lg:col-span-2">
+          {/* 2️⃣ About + Resources (1-2-1 part) */}
+          <div className="grid grid-cols-2 gap-8 md:col-span-2 xl:col-span-2">
             {/* About */}
             <div>
               <h3 className="text-white font-semibold mb-6">About</h3>
@@ -74,8 +77,8 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* 3️ Newsletter  */}
-          <div className="lg:col-span-1">
+          {/* 3️⃣ Newsletter */}
+          <div>
             <h3 className="text-white font-semibold mb-6">
               Get job notifications
             </h3>
@@ -84,7 +87,8 @@ const Footer = () => {
               The latest job news, articles, sent to your inbox weekly.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3">
+            {/* Responsive Input Fix */}
+            <div className="flex flex-col xl:flex-row gap-3">
               <input
                 type="email"
                 placeholder="Email Address"
