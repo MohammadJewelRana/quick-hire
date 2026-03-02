@@ -1,9 +1,10 @@
-import Home from "./_components/Home";
+import Hero from "./_components/Hero";
+ 
 
 const page = () => {
   return (
     <div>
-      <Home />
+      <Hero />
     </div>
   );
 };
