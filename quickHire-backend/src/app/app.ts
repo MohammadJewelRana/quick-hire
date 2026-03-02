@@ -1,6 +1,7 @@
 import express, { Application, NextFunction, Request, Response } from "express";
 import cors from "cors";
 import notFound from "./middleware/notFound";
+ 
 
 const app: Application = express();
 
@@ -17,6 +18,8 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
+ 
 // base route
 app.get("/api", (_req: Request, res: Response) => {
   res.status(200).json({
