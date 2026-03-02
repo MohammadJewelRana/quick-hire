@@ -21,6 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 app.use("/api", router);
+
 // base route
 app.get("/api", (_req: Request, res: Response) => {
   res.status(200).json({

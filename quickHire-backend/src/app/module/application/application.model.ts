@@ -17,19 +17,18 @@ const applicationSchema = new Schema<IApplication>(
       type: String,
       required: [true, "Email is required"],
       trim: true,
-      match: [
-        /^\S+@\S+\.\S+$/,
-        "Please provide a valid email address",
-      ],
+      validate: {
+        validator: function (value: string) {
+          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+        },
+        message: "Please provide a valid email address",
+      },
     },
     resumeLink: {
       type: String,
       required: [true, "Resume link is required"],
       trim: true,
-      match: [
-        /^(https?:\/\/)?([\w\-])+\.{1}[a-zA-Z]{2,}(\/\S*)?$/,
-        "Please provide a valid URL",
-      ],
+      match: [/^(https?:\/\/)[^\s$.?#].[^\s]*$/i, "Please provide a valid URL"],
     },
     coverNote: {
       type: String,
