@@ -11,7 +11,7 @@ const companies = [
 
 const Companies = () => {
   return (
-    <section className="bg-[#FFFFFF] py-16">
+    <section className="bg-[#FFFFFF]  py-6 lg:py-10">
       <div className="max-w-7xl mx-auto px-6">
         {/* Top Text */}
         <p className="text-gray-400 mb-10">Companies we helped grow</p>

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Banner = () => {
   return (
-    <section className="py-4 lg:py-16 bg-white">
+    <section className="py-6 lg:py-10 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="relative overflow-hidden rounded-sm">
           {/* Background Image */}
