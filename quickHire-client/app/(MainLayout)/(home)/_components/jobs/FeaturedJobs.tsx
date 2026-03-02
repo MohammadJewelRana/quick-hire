@@ -92,6 +92,8 @@ const dummyJobs = [
   },
 ];
 
+
+
 const FeaturedJobs = () => {
   return (
     <section className="py-6 lg:py-10  ">
