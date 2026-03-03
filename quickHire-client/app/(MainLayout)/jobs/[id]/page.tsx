@@ -1,10 +1,10 @@
-"use client";
-
-import { useParams } from "next/navigation";
+ 
+ "use client"
 import { useGetSingleJob } from "@/app/hooks/job.hook";
 import ApplyForm from "./_components/ApplyForm";
 import JobDetails from "./_components/JobDetails";
 import LoadingSpinner from "@/app/loading";
+import { useParams } from "next/navigation";
 
 const Page = () => {
   const params = useParams();
