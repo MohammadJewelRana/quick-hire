@@ -4,6 +4,7 @@ import ApplyForm from "./_components/ApplyForm";
 import JobDetails from "./_components/JobDetails";
 import LoadingSpinner from "@/app/loading";
 import { useParams } from "next/navigation";
+import FeaturedJobs from "../../(home)/_components/jobs/FeaturedJobs";
 
 const Page = () => {
   const params = useParams();
@@ -42,6 +43,8 @@ const Page = () => {
           <div className="text-center py-24 text-red-500">Job not found</div>
         )}
       </div>
+
+      <FeaturedJobs />
     </section>
   );
 };

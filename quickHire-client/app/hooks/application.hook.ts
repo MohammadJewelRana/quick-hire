@@ -1,7 +1,6 @@
 import toast from "react-hot-toast";
 import { useCreateApplicationMutation } from "../services/application/application.api";
 
-// Create Application Hook
 export const useCreateApplication = () => {
   const [createApplication, { isLoading, error }] =
     useCreateApplicationMutation();
@@ -12,9 +11,16 @@ export const useCreateApplication = () => {
       toast.success("Application submitted successfully!");
       return true;
     } catch (err: any) {
-      toast.error("Failed to submit application!");
-      return false;
       console.error(err);
+
+      // ✅ If backend validation error exists
+      const backendError =
+        err?.data?.errorSources?.[0]?.message ||
+        err?.data?.message ||
+        "Failed to submit application!";
+
+      toast.error(backendError);
+      return false;
     }
   };
 
