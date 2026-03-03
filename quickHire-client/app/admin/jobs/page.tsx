@@ -10,9 +10,9 @@ import {
   useCreateJobMutation,
   useDeleteJobMutation,
   useGetAllJobsQuery,
- 
 } from "@/app/services/job/job.api";
 import Swal from "sweetalert2";
+import JobFormModal from "./_components/JobForm";
 
 export default function AdminJobsPage() {
   const { data, isLoading } = useGetAllJobsQuery(undefined);
@@ -37,43 +37,43 @@ export default function AdminJobsPage() {
     }
   };
 
-const handleDelete = async (id: string) => {
-  const result = await Swal.fire({
-    title: "Are you sure?",
-    text: "This job will be permanently deleted.",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#6366f1",
-    cancelButtonColor: "#64748b",
-    confirmButtonText: "Yes, delete it",
-    background: "#111C2D",
-    color: "#fff",
-  });
+  const handleDelete = async (id: string) => {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "This job will be permanently deleted.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#6366f1",
+      cancelButtonColor: "#64748b",
+      confirmButtonText: "Yes, delete it",
+      background: "#111C2D",
+      color: "#fff",
+    });
 
-  if (result.isConfirmed) {
-    try {
-      await deleteJob(id).unwrap();
+    if (result.isConfirmed) {
+      try {
+        await deleteJob(id).unwrap();
 
-      Swal.fire({
-        title: "Deleted!",
-        text: "Job has been deleted.",
-        icon: "success",
-        confirmButtonColor: "#6366f1",
-        background: "#111C2D",
-        color: "#fff",
-      });
-    } catch {
-      Swal.fire({
-        title: "Error!",
-        text: "Failed to delete job.",
-        icon: "error",
-        confirmButtonColor: "#6366f1",
-        background: "#111C2D",
-        color: "#fff",
-      });
+        Swal.fire({
+          title: "Deleted!",
+          text: "Job has been deleted.",
+          icon: "success",
+          confirmButtonColor: "#6366f1",
+          background: "#111C2D",
+          color: "#fff",
+        });
+      } catch {
+        Swal.fire({
+          title: "Error!",
+          text: "Failed to delete job.",
+          icon: "error",
+          confirmButtonColor: "#6366f1",
+          background: "#111C2D",
+          color: "#fff",
+        });
+      }
     }
-  }
-};
+  };
 
   if (isLoading) return <p className="text-slate-400">Loading...</p>;
 
@@ -101,12 +101,12 @@ const handleDelete = async (id: string) => {
         onDelete={handleDelete}
       />
 
-      {/* <JobFormModal
+      <JobFormModal
         open={open}
         setOpen={setOpen}
         editJob={editJob}
         onSubmit={handleSubmit}
-      /> */}
+      />
     </div>
   );
 }
