@@ -10,6 +10,7 @@ const page = () => {
   const { data, isLoading } = useGetJobByIdQuery(params.id as string);
 
   const job = data?.data;
+  console.log(job);
 
   if (isLoading) {
     return <div className="text-center py-24">Loading...</div>;
@@ -20,25 +21,29 @@ const page = () => {
   }
 
   return (
-    <section className="bg-white   mt-16">
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="flex gap-12">
-          {/* LEFT SIDE */}
-          <div className="w-2/3">
-            <div className="bg-white rounded-xl shadow-sm p-8">
-              <JobDetails />
-            </div>
-          </div>
+<section className="bg-white mt-16">
+  <div className="max-w-7xl mx-auto px-6 py-12">
 
-          {/* RIGHT SIDE */}
-          <div className="w-1/3">
-            <div className="bg-white rounded-xl shadow-md p-6   top-24">
-              <ApplyForm jobId={job._id} />
-            </div>
-          </div>
+    <div className="flex flex-col md:flex-row gap-10">
+
+      {/* LEFT SIDE */}
+      <div className="w-full md:w-1/2">
+        <div className="bg-white rounded-xl shadow-sm p-8">
+          <JobDetails job={job} />
         </div>
       </div>
-    </section>
+
+      {/* RIGHT SIDE */}
+      <div className="w-full md:w-1/2">
+        <div className="bg-white py-6 md:sticky md:top-24">
+          <ApplyForm jobId={job._id} />
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
   );
 };
 
