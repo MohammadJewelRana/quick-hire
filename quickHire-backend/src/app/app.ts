@@ -7,18 +7,27 @@ import globalErrorHandler from "./middleware/globalErrorHandler";
 const app: Application = express();
 
 //Middlewares
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:3001",
+  "https://quick-hire-client-ochre.vercel.app",
+];
+
 const corsOptions = {
-  origin: ["http://localhost:3000", "http://localhost:3001"],
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+  origin: function (origin: string | undefined, callback: any) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true,
-  allowedHeaders: ["Content-Type", "Authorization"],
 };
 
 app.use(cors(corsOptions));
 // app.options('*', cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 
 app.use("/api", router);
 
@@ -29,7 +38,6 @@ app.get("/api", (_req: Request, res: Response) => {
     message: "Quick Hire Backend Server is running ",
   });
 });
-
 
 app.use(globalErrorHandler);
 app.use(notFound);
