@@ -29,6 +29,16 @@ const createApplicationIntoDB = async (payload: IApplication) => {
     throw new Error("Job not found");
   }
 
+  const existingApplication = await ApplicationModel.findOne({
+    jobID,
+    email,
+    isDeleted: false,
+  });
+
+  if (existingApplication) {
+    throw new Error("You have already applied for this job using this email");
+  }
+
   const result = await ApplicationModel.create({
     ...payload,
     jobID: new mongoose.Types.ObjectId(jobID),
