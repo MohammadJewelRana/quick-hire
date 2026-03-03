@@ -6,11 +6,7 @@ type Props = {
   text?: string;
 };
 
-const LoadingSpinner = ({
-  size = "md",
-  fullScreen = false,
-  text,
-}: Props) => {
+const LoadingSpinner = ({ size = "md", fullScreen = false, text }: Props) => {
   const sizeClasses = {
     sm: "h-5 w-5 border-2",
     md: "h-9 w-9 border-[3px]",
