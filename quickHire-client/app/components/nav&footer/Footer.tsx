@@ -15,7 +15,7 @@ const Footer = () => {
     <footer className="bg-[#0F172A] text-[#94A3B8] pt-20 pb-10">
       <div className="max-w-7xl mx-auto px-6">
         {/* 🔥 Main Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
           {/* 1️⃣ Logo Section */}
           <div>
             <div className="mb-6">
@@ -92,9 +92,9 @@ const Footer = () => {
               <input
                 type="email"
                 placeholder="Email Address"
-                className="flex-1 px-4 py-3 bg-gray-200 text-gray-700 outline-none rounded-md"
+                className="flex-1 px-3 py-3 bg-gray-200 text-gray-700 outline-none rounded-md"
               />
-              <button className="bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 transition">
+              <button className="bg-indigo-600 text-white px-3 py-3 rounded-md hover:bg-indigo-700 transition">
                 Subscribe
               </button>
             </div>

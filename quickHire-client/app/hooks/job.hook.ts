@@ -2,6 +2,7 @@ import toast from "react-hot-toast";
 import {
   useCreateJobMutation,
   useGetAllJobsQuery,
+  useGetJobByIdQuery,
 } from "../services/job/job.api";
 
 // Create Job
@@ -37,6 +38,29 @@ export const useGetAllJobs = () => {
 
   return {
     jobs,
+    isLoading,
+    isError: !!error,
+  };
+};
+
+
+export const useGetSingleJob = (id: string) => {
+  const { data, error, isLoading } = useGetJobByIdQuery(id, {
+    skip: !id,
+  });
+
+  let job = null;
+
+  if (data?.success) {
+    job = data.data;
+  }
+
+  if (error) {
+    toast.error("Failed to fetch job!");
+  }
+
+  return {
+    job,
     isLoading,
     isError: !!error,
   };
