@@ -1,73 +1,72 @@
-# 🚀 QuickHire – Simple Job Board Application
+# 🚀 QuickHire – Full Stack Job Board Application
 
-QuickHire is a full-stack job board application built with **Next.js (Frontend)** and **Node.js/Express + MongoDB (Backend)**.  
+QuickHire is a full-stack mini job board application built with **Next.js (Frontend)** and **Node.js/Express (Backend)**.  
 
-It allows users to browse job listings, search and filter jobs, view job details, and apply for jobs.  
-An admin panel is included for creating and managing job listings.
-
-This project was developed as part of a Software Engineer technical assessment.
+It allows users to browse job listings, search by title and location, view job details, and submit applications.  
+An admin panel enables creating and deleting job posts.
 
 ---
 
-## 🌐 Live Demo
+## 🌐 Live Links
 
-🔗 Frontend (Client):  
-https://quick-hire-client.vercel.app
+🔹 **Live Frontend:**  
+https://quick-hire-job-xi.vercel.app/
 
-🔗 Backend (API):  
+🔹 **Backend API (Production):**  
 https://quick-hire-backend-psi.vercel.app/api
 
-> ⚠️ Replace the frontend URL above with your actual deployed client link if different.
+🔹 **GitHub Repository:**  
+https://github.com/MohammadJewelRana/quick-hire
+
+🔹 **Demo Video:**  
+https://drive.google.com/file/d/1IdhjMHkHhitHDXimAKx6Tp3o4J6QHPaj/view?usp=sharing
 
 ---
 
 ## 🛠 Tech Stack
 
-### 🎨 Frontend (Client)
-- Next.js 16
-- React 19
-- Redux Toolkit
-- React Hook Form
-- TanStack Table
+### Frontend
+- Next.js (App Router)
+- TypeScript
 - Tailwind CSS
-- SweetAlert2
+- Redux Toolkit (RTK Query)
 - React Hot Toast
-- Swiper
 
-### ⚙️ Backend (Server)
+### Backend
 - Node.js
 - Express.js
-- TypeScript
 - MongoDB (Mongoose)
-- Zod (Validation)
-- Nodemailer
-- CORS
-- dotenv
+- RESTful API Architecture
+
+### Deployment
+- Frontend: Vercel
+- Backend: Vercel
+- Database: MongoDB Atlas
 
 ---
 
 ## ✨ Features
 
-### 👨‍💼 User Features
+### 👤 User Features
 - View all job listings
-- Search jobs
-- Filter by category/location
-- View detailed job description
-- Apply to a job
-- Form validation (Email + URL validation)
-- Responsive design
+- Search by job title
+- Filter by location
+- Live search suggestions dropdown
+- View job details page
+- Apply to jobs with resume link
+- Responsive UI (Mobile, Tablet, Desktop)
 
-### 🔐 Admin Features
-- Create new job listings
-- Delete job listings
-- Admin dashboard view
+### 🛠 Admin Features
+- Create new job listing
+- Delete job listing
+- Persistent database storage
 
-### 🔄 API Features
-- RESTful API design
-- Input validation using Zod
-- Proper error handling
-- MongoDB relationship (Job → Applications)
+### ⚙️ Technical Features
+- RESTful API endpoints
+- Model relationship (Job → Applications)
+- Input validation (required fields, email format, URL validation)
+- Clean folder structure
+- Reusable components
+- Environment-based configuration
 
 ---
-
-## 📂 Project Structure
