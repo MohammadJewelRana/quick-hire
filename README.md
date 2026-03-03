@@ -70,3 +70,64 @@ https://drive.google.com/file/d/1IdhjMHkHhitHDXimAKx6Tp3o4J6QHPaj/view?usp=shari
 - Environment-based configuration
 
 ---
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://link-to-project
+```
+
+Go to the project directory
+
+```bash
+  cd my-project
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run start
+```
+
+## 🔐 Environment Variables
+
+This project requires environment variables for both frontend and backend configuration.
+
+---
+ 
+
+ 
+
+ 
+
+```env
+# ===============================
+# FRONTEND ENVIRONMENT VARIABLES
+# ===============================
+
+# Production Backend API URL
+NEXT_PUBLIC_API_URL=https://quick-hire-backend-psi.vercel.app/api
+
+# Local Development Backend URL (Optional)
+# NEXT_PUBLIC_API_URL=http://localhost:5000/api
+
+# ===============================
+# BACKEND ENVIRONMENT VARIABLES
+# ===============================
+
+# Application Environment
+NODE_ENV=development
+
+# Server Port
+PORT=5000
+
+# MongoDB Database Connection String
+DATABASE_URL=mongodb+srv://[projectname]:[password]@cluster0.843endu.mongodb.net/quick-hire-db?retryWrites=true&w=majority
+
