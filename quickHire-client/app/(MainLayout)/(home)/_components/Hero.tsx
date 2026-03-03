@@ -1,10 +1,45 @@
 "use client";
 
 import Image from "next/image";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useGetAllJobs } from "@/app/hooks/job.hook";
 
 export default function Hero() {
+  const router = useRouter();
+
+  const { jobs, isLoading } = useGetAllJobs();
+
+  const [search, setSearch] = useState("");
+  const [location, setLocation] = useState("");
+  const [suggestions, setSuggestions] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (!search && !location) {
+      setSuggestions([]);
+      return;
+    }
+
+    const filtered = jobs.filter((job: any) => {
+      const titleMatch = search
+        ? job.title.toLowerCase().includes(search.toLowerCase())
+        : true;
+
+      const locationMatch = location
+        ? job.location.toLowerCase().includes(location.toLowerCase())
+        : true;
+
+      return titleMatch && locationMatch;
+    });
+
+    setSuggestions(filtered.slice(0, 5));
+  }, [search, location, jobs]);
+  const handleSearch = () => {
+    router.push(`/jobs?q=${search}&location=${location}`);
+  };
+
   return (
-    <section className="relative bg-[#F5F7FB] overflow-hidden pt-24 lg:pt-[var(--navbar-height)] lg:h-[80vh] lg:min-h-[520px]">
+    <section className="relative  bg-[#F5F7FB] overflow-hidden pt-24 lg:pt-[var(--navbar-height)] lg:h-[80vh] lg:min-h-[520px]">
       {/* Pattern Background */}
       <div className="absolute inset-0 z-0 opacity-30 pointer-events-none">
         <Image
@@ -46,24 +81,51 @@ export default function Hero() {
             </p>
 
             {/* Search Box */}
-            <div className="w-full max-w-2xl">
+
+            <div className="w-full max-w-2xl relative">
               <div className="bg-white shadow-2xl rounded-md p-5 flex flex-col md:flex-row items-center gap-4">
+                {/* Title Input */}
                 <input
                   type="text"
                   placeholder="Job title or keyword"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
                   className="flex-1 outline-none text-gray-600 px-3 py-3 w-full"
                 />
 
                 <div className="hidden md:block w-px h-8 bg-gray-200"></div>
 
-                <select className="outline-none text-gray-600 px-3 py-3 w-full md:w-auto">
-                  <option>Florence, Italy</option>
-                </select>
-
-                <button className="bg-[#4F46E5] text-white px-8 py-3 rounded-sm hover:bg-indigo-700 transition w-full md:w-auto">
+                {/* Location Input */}
+                <input
+                  type="text"
+                  placeholder="Location"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                  className="outline-none text-gray-600 px-3 py-3 w-full md:w-auto"
+                />
+                <button
+                  onClick={handleSearch}
+                  className="bg-[#4F46E5] text-white px-8 py-3 rounded-sm hover:bg-indigo-700 transition w-full md:w-auto"
+                  disabled
+                >
                   Search my job
                 </button>
               </div>
+
+              {/* Suggestion Dropdown */}
+              {suggestions.length > 0 && (
+                <div className="absolute bg-white shadow-lg w-full mt-2 rounded-md z-50">
+                  {suggestions.map((job: any) => (
+                    <div
+                      key={job._id}
+                      onClick={() => router.push(`/jobs/${job._id}`)}
+                      className="px-4 py-3 hover:bg-gray-100 cursor-pointer text-sm"
+                    >
+                      {job.title} – {job.location}
+                    </div>
+                  ))}
+                </div>
+              )}
 
               <p className="text-sm text-gray-400 mt-4 pb-4">
                 Popular : UI Designer, UX Researcher, Android, Admin
