@@ -1,9 +1,15 @@
 import { Router } from "express";
 import { JobController } from "./job.controller";
+import { JobValidation } from "./job.validation.zod";
+import validateRequest from "../../middleware/validateRequest";
 
 const router = Router();
 
-router.post("/", JobController.createJob);
+router.post(
+  "/",
+  validateRequest(JobValidation.createJobZodSchema),
+  JobController.createJob
+);
 
 router.get("/", JobController.getAllJobs);
 
